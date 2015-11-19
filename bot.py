@@ -41,7 +41,7 @@ if __name__ == "__main__":
         urllib.urlretrieve(URL, 'gif.GIF')
         status = ('New #Space #GifOfTheDay!\n'
                   '⌚ ' + str(datetime.now()) + '\n'
-                  '🔗 {}'.format(URL))
+                  '🔗 {}'.format(result['data']['url']))
         twitter.api.update_with_media('gif.GIF', status)
         t = time.localtime()
         t = time.mktime(t[:3] + (0, 0, 0) + t[6:])
