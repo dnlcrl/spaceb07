@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# encoding: utf-8
 import os
 import time
 import giphy
@@ -37,7 +39,6 @@ if __name__ == "__main__":
         result = c.random(tag="space")
         URL = result['data']['image_original_url']
         urllib.urlretrieve(URL, 'gif.GIF')
-
         status = ('New #Space #GifOfTheDay!\n'
                   '⌚ ' + str(datetime.now()) + '\n'
                   '🔗 {}'.format(URL))
