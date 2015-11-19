@@ -9,7 +9,6 @@ from datetime import datetime
 
 
 class TwitterAPI:
-
     """
     Class for accessing the Twitter API.
 
@@ -31,7 +30,8 @@ class TwitterAPI:
         """Send a tweet"""
         self.api.update_status(status=message)
 
-if __name__ == "__main__":
+
+def main():
     twitter = TwitterAPI()
     while True:
         # Send a tweet here!
@@ -46,3 +46,7 @@ if __name__ == "__main__":
         t = time.localtime()
         t = time.mktime(t[:3] + (0, 0, 0) + t[6:])
         time.sleep(t + 24*3600 - time.time())
+
+
+if __name__ == "__main__":
+    main()
