@@ -1,7 +1,10 @@
-# ensible data files
+# sensible data files
 setup_env_twitter.sh
 setup_env_dropbox.sh
 
+# data files
+data/last_tweets.json
+data/log.txt
 
 # Cache files
 *.DS_Store
