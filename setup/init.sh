@@ -53,7 +53,7 @@ heroku config:add TWITTER_CONSUMER_KEY=$consumerkey \
     TWITTER_ACCESS_TOKEN_SECRET=$accesstokensecret
 
 #create a script for setting up your local environment
-cat <<EOF > setup_env.sh
+cat <<EOF > setup_env_twitter.sh
 export TWITTER_CONSUMER_KEY=$consumerkey
 export TWITTER_CONSUMER_SECRET=$consumersecret
 export TWITTER_ACCESS_TOKEN=$accesstoken
@@ -69,4 +69,4 @@ echo
 echo "Scaling to worker=1"
 heroku ps:scale worker=1
 
-echo "Now you can \"source setup_env.sh\" and get to work on that sweet bot!"
+echo "Now you can \"source setup_env_twitter.sh\" and get to work on that sweet bot!"
