@@ -46,7 +46,7 @@ class Logger:
             t = datetime.strptime(
                 self.last_tweets[action]['datetime'], '%Y%m%d%H%M%S')
         except Exception, e:
-            self.log(str(e), error=True)
+            self.log('Reading self.last_tweets[action]["datetime"]' + str(e), error=True)
         return (datetime.now() - t).total_seconds()
 
     def log(self, message, error=False):
