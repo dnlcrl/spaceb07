@@ -13,6 +13,7 @@ class Actions:
         space_gif = 'space_gif'
         retweet_scott_kelly = 'retweet_scott_kelly'
         retweet_astro_kjell = 'retweet_astro_kjell'
+        retweet_astro_kimiya = 'retweet_astro_kimiya'
 
 
 class FileNames:

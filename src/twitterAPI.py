@@ -38,9 +38,10 @@ class TwitterAPI:
         '''Send a tweet'''
         self.api.update_status(status=message)
 
+    '''TODO: Refactor to make a single function for retweets'''
     def retweet_scott_kelly(self):
         '''Retweet @StationCDRKelly #YearInSpace image'''
-        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_scott_kelly) > 30*60:
+        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_scott_kelly) > 2*60*60:
             self.logger.log('trying to retweet Scott Kelly, @StationCDRKelly')
             timeline = self.prapare_timeline(self.api.user_timeline('StationCDRKelly'), word_whitelist=[
                                              "#YearInSpace"], tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_scott_kelly))
@@ -55,7 +56,7 @@ class TwitterAPI:
 
     def retweet_astro_kjell(self):
         '''Retweet @astro_kjell image'''
-        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_astro_kjell) > 30*60:
+        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_astro_kjell) > 2*60*60:
             self.logger.log('trying to retweet astro_kjell, @astro_kjell')
             timeline = self.prapare_timeline(self.api.user_timeline('astro_kjell'), tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_astro_kjell))
 
@@ -63,6 +64,20 @@ class TwitterAPI:
             self.logger.update_last_tweet(
                 Actions.TweetActions.retweet_astro_kjell, timeline[0])
             self.logger.log('#space image from astro_kjell retweeted 🤓')
+            # break
+        else:
+            return False
+
+    def retweet_astro_kimiya(self):
+        '''Retweet @astro_kimiya image'''
+        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_astro_kimiya) > 2*60*60:
+            self.logger.log('trying to retweet astro_kimiya, @astro_kimiya')
+            timeline = self.prapare_timeline(self.api.user_timeline('astro_kimiya'), tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_astro_kimiya))
+
+            self.api.retweet(timeline[0].id)
+            self.logger.update_last_tweet(
+                Actions.TweetActions.retweet_astro_kimiya, timeline[0])
+            self.logger.log('#space image from astro_kimiya retweeted 🤓')
             # break
         else:
             return False
