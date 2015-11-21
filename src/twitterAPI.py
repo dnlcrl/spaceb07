@@ -50,6 +50,7 @@ class TwitterAPI:
             self.logger.update_last_tweet(
                 Actions.TweetActions.retweet_scott_kelly, timeline[0])
             self.logger.log('#space image from Scott retweeted 🤓')
+            return True
             # break
         else:
             return False
@@ -64,7 +65,7 @@ class TwitterAPI:
             self.logger.update_last_tweet(
                 Actions.TweetActions.retweet_astro_kjell, timeline[0])
             self.logger.log('#space image from astro_kjell retweeted 🤓')
-            # break
+            return True
         else:
             return False
 
@@ -78,7 +79,7 @@ class TwitterAPI:
             self.logger.update_last_tweet(
                 Actions.TweetActions.retweet_astro_kimiya, timeline[0])
             self.logger.log('#space image from astro_kimiya retweeted 🤓')
-            # break
+            return True
         else:
             return False
 
@@ -91,7 +92,7 @@ class TwitterAPI:
             self.logger.update_last_tweet(
                 Actions.TweetActions.retweet_volkov_iss, timeline[0])
             self.logger.log('#space image from Sergey Volkov retweeted 🤓')
-            # break
+            return True
         else:
             return False
 
