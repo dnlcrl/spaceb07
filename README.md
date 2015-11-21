@@ -6,7 +6,7 @@ Code for my first Twitter bot: http://twitter.com/spaceb07, running on Heroku.
   - Kjell Lindgren: https://twitter.com/astro_kjell
   - Scott Kelly: https://twitter.com/StationCDRKelly
   - Kimiya Yui: https://twitter.com/astro_kimiya
-
+  - Sergey Volkov: https://twitter.com/volkov_iss
 
 # Create Your Own Twitter Bot:
 
