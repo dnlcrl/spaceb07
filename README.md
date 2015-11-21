@@ -2,7 +2,9 @@
 Code for my first Twitter bot: http://twitter.com/spaceb07, running on Heroku.
 
 - Tweets a random GIF tagged "space" from Giphy.com (one every 24 hours).
-- Retweets image pictures from astronauts curently in space (one every 30 minutes, check http://www.howmanypeopleareinspacerightnow.com/ for a list of curently in space astronauts).
+- Retweets image pictures from astronauts curently in space (one every 30 minutes, check http://www.howmanypeopleareinspacerightnow.com/ for a list of curently in space astronauts). Currently retweeting from:
+  - Kjell Lindgren: https://twitter.com/astro_kjell
+  - Scott Kelly: https://twitter.com/StationCDRKelly
 
 
 # Create Your Own Twitter Bot:
