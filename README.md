@@ -1,5 +1,5 @@
 # spaceb07
-Code for my first Twitter bot: http://twitter.com/spaceb07, running on Heroku.
+:rocket: Space addicted twitter bot: http://twitter.com/spaceb07, running on Heroku.
 
 - Tweets a random GIF tagged "space" from Giphy.com (one every 24 hours).
 - Retweets image pictures from astronauts curently in space (one every 30 minutes, 2 hours between retweets from the same user. Check http://www.howmanypeopleareinspacerightnow.com/ for a list of curently in space astronauts). Currently retweeting from:
