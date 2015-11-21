@@ -87,7 +87,6 @@ class TwitterAPI:
         if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_volkov_iss) > 2*60*60:
             self.logger.log('trying to retweet Sergey Volkov, @volkov_iss')
             timeline = self.prapare_timeline(self.api.user_timeline('volkov_iss'), tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_volkov_iss))
-            import pdb; pdb.set_trace()
             self.api.retweet(timeline[0].id)
             self.logger.update_last_tweet(
                 Actions.TweetActions.retweet_volkov_iss, timeline[0])

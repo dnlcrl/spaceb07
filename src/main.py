@@ -13,7 +13,7 @@ def main():
                Actions.TweetActions.retweet_astro_kimiya,
                Actions.TweetActions.retweet_volkov_iss]
 
-    while False:
+    while True:
         # Send a tweet here!
         tweeted = False
 
