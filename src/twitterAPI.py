@@ -53,6 +53,20 @@ class TwitterAPI:
         else:
             return False
 
+    def retweet_astro_kjell(self):
+        '''Retweet @astro_kjell image'''
+        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_astro_kjell) > 30*60:
+            self.logger.log('trying to retweet astro_kjell, @astro_kjell')
+            timeline = self.prapare_timeline(self.api.user_timeline('astro_kjell'), tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_astro_kjell))
+
+            self.api.retweet(timeline[0].id)
+            self.logger.update_last_tweet(
+                Actions.TweetActions.retweet_astro_kjell, timeline[0])
+            self.logger.log('#space image from astro_kjell retweeted 🤓')
+            # break
+        else:
+            return False
+
     def giphy_tweet(self):
         '''Tweet a random giphy #space gif'''
         self.tries += 1
