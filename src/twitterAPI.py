@@ -82,6 +82,22 @@ class TwitterAPI:
         else:
             return False
 
+    def retweet_volkov_iss(self):
+        '''Retweet @volkov_iss image'''
+        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_volkov_iss) > 2*60*60:
+            self.logger.log('trying to retweet Sergey Volkov, @volkov_iss')
+            timeline = self.prapare_timeline(self.api.user_timeline('volkov_iss'), tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_volkov_iss))
+            import pdb; pdb.set_trace()
+            self.api.retweet(timeline[0].id)
+            self.logger.update_last_tweet(
+                Actions.TweetActions.retweet_volkov_iss, timeline[0])
+            self.logger.log('#space image from Sergey Volkov retweeted 🤓')
+            # break
+        else:
+            return False
+
+
+
     def giphy_tweet(self):
         '''Tweet a random giphy #space gif'''
         self.tries += 1
@@ -127,6 +143,7 @@ class TwitterAPI:
             timeline = filter(lambda status: any(
                 word in status.text.split() for word in word_whitelist), timeline)
         #timeline = filter(lambda status: status.text[0] != "@", timeline)
+        timeline = filter(lambda status: status.entities.get("media") is not None, timeline)
         timeline = filter(lambda status: not any(
             word in status.text.split() for word in _word_blacklist), timeline)
         timeline = filter(

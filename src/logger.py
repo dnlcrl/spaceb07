@@ -11,6 +11,7 @@ class Logger:
     '''
     Class for keep a track of what's going on.
     TODO: methods docstrings
+    TODO: fix logs timestamp as int not str
 
     '''
     def __init__(self):

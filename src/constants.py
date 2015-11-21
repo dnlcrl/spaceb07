@@ -14,6 +14,7 @@ class Actions:
         retweet_scott_kelly = 'retweet_scott_kelly'
         retweet_astro_kjell = 'retweet_astro_kjell'
         retweet_astro_kimiya = 'retweet_astro_kimiya'
+        retweet_volkov_iss = 'retweet_volkov_iss'
 
 
 class FileNames:
