@@ -3,6 +3,7 @@
 import time
 from twitterAPI import TwitterAPI
 from constants import Actions
+from logger import Logger
 
 
 def main():
@@ -27,7 +28,6 @@ def main():
                     word_whitelist = ["#YearInSpace"]
                 if twitter.retweet_astronaut(action, word_blacklist, word_whitelist):
                     break
-
 
         logger.log('Going to sleep for 30mins')
         time.sleep(1800)  # repeat every 30 mins

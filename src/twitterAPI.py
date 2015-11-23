@@ -7,7 +7,6 @@ import tweepy
 import giphy
 import urllib
 from datetime import datetime
-from logger import Logger
 from constants import Actions, TWITTER_USERS
 
 
