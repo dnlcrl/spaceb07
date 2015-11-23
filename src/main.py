@@ -14,28 +14,18 @@ def main():
                Actions.TweetActions.retweet_volkov_iss]
 
     while True:
-        # Send a tweet here!
-        tweeted = False
 
-        if not tweeted and Actions.TweetActions.space_gif in actions:
-            if twitter.giphy_tweet():
-                tweeted = True
-
-        if not tweeted and Actions.TweetActions.retweet_volkov_iss in actions:
-            if twitter.retweet_volkov_iss():
-                tweeted = True
-
-        if not tweeted and Actions.TweetActions.retweet_scott_kelly in actions:
-            if twitter.retweet_scott_kelly():
-                tweeted = True
-
-        if not tweeted and Actions.TweetActions.retweet_astro_kjell in actions:
-            if twitter.retweet_astro_kjell():
-                tweeted = True
-
-        if not tweeted and Actions.TweetActions.retweet_astro_kimiya in actions:
-            if twitter.retweet_astro_kimiya():
-                tweeted = True
+        for action in actions:
+            if action == Actions.TweetActions.space_gif:
+                if twitter.giphy_tweet():
+                    break
+            else:
+                word_whitelist = None
+                word_blacklist = None
+                if action == Actions.TweetActions.retweet_scott_kelly:
+                    word_whitelist = ["#YearInSpace"]
+                if twitter.retweet_astronaut(action, word_blacklist, word_whitelist):
+                    break
 
         print 'sleeping for 30 mins'
         time.sleep(1800)  # repeat every 30 mins

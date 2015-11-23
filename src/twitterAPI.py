@@ -8,7 +8,7 @@ import giphy
 import urllib
 from datetime import datetime
 from logger import Logger
-from constants import Actions
+from constants import Actions, TWITTER_USERS
 
 
 class TwitterAPI:
@@ -38,65 +38,39 @@ class TwitterAPI:
         '''Send a tweet'''
         self.api.update_status(status=message)
 
-    '''TODO: Refactor to make a single function for retweets'''
-    def retweet_scott_kelly(self):
-        '''Retweet @StationCDRKelly #YearInSpace image'''
-        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_scott_kelly) > 2*60*60:
-            self.logger.log('trying to retweet Scott Kelly, @StationCDRKelly')
-            timeline = self.prapare_timeline(self.api.user_timeline('StationCDRKelly'), word_whitelist=[
-                                             "#YearInSpace"], tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_scott_kelly))
+    def retweet_astronaut(self, action, word_blacklist=None, word_whitelist=None):
+        '''Retweet @Astronaut image
+        TODO: Refactor to make a single exception log string'''
 
-            self.api.retweet(timeline[0].id)
-            self.logger.update_last_tweet(
-                Actions.TweetActions.retweet_scott_kelly, timeline[0])
-            self.logger.log('#space image from Scott retweeted 🤓')
+        if self.logger.last_action_past_seconds(action) > 2*60*60:
+            self.logger.log('trying to retweet @' + TWITTER_USERS[action])
+            try:
+                timeline = self.prapare_timeline(self.api.user_timeline(TWITTER_USERS[
+                                                 action]), word_whitelist=word_whitelist, word_blacklist=word_blacklist, tweet_id=self.logger.last_action_id(action))
+
+                self.api.retweet(timeline[0].id)
+                self.logger.update_last_tweet(action, timeline[0])
+                self.logger.log(
+                    '#space image from @' + TWITTER_USERS[action] + ' retweeted 🤓')
+            except IndexError as err:
+                self.logger.log(
+                    'Retweeting @' + TWITTER_USERS[action] + ': ' + 'NO NEW TWEETS!', error=True)
+                return False
+            except tweepy.TweepError as err:
+                m = 'Retweeting @' + \
+                    TWITTER_USERS[action] + ': ' + str(err.message)
+                m = m + 'check: https://twitter.com/statuses/' + \
+                    str(timeline[0].id)
+                self.logger.log(m, error=True)
+                return False
+            except Exception, e:
+                self.logger.log(
+                    'Retweeting @' + TWITTER_USERS[action] + ': ' + str(e), error=True)
+                return False
             return True
             # break
         else:
             return False
-
-    def retweet_astro_kjell(self):
-        '''Retweet @astro_kjell image'''
-        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_astro_kjell) > 2*60*60:
-            self.logger.log('trying to retweet astro_kjell, @astro_kjell')
-            timeline = self.prapare_timeline(self.api.user_timeline('astro_kjell'), tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_astro_kjell))
-
-            self.api.retweet(timeline[0].id)
-            self.logger.update_last_tweet(
-                Actions.TweetActions.retweet_astro_kjell, timeline[0])
-            self.logger.log('#space image from astro_kjell retweeted 🤓')
-            return True
-        else:
-            return False
-
-    def retweet_astro_kimiya(self):
-        '''Retweet @astro_kimiya image'''
-        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_astro_kimiya) > 2*60*60:
-            self.logger.log('trying to retweet astro_kimiya, @astro_kimiya')
-            timeline = self.prapare_timeline(self.api.user_timeline('astro_kimiya'), tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_astro_kimiya))
-
-            self.api.retweet(timeline[0].id)
-            self.logger.update_last_tweet(
-                Actions.TweetActions.retweet_astro_kimiya, timeline[0])
-            self.logger.log('#space image from astro_kimiya retweeted 🤓')
-            return True
-        else:
-            return False
-
-    def retweet_volkov_iss(self):
-        '''Retweet @volkov_iss image'''
-        if self.logger.last_action_past_seconds(Actions.TweetActions.retweet_volkov_iss) > 2*60*60:
-            self.logger.log('trying to retweet Sergey Volkov, @volkov_iss')
-            timeline = self.prapare_timeline(self.api.user_timeline('volkov_iss'), tweet_id=self.logger.last_action_id(Actions.TweetActions.retweet_volkov_iss))
-            self.api.retweet(timeline[0].id)
-            self.logger.update_last_tweet(
-                Actions.TweetActions.retweet_volkov_iss, timeline[0])
-            self.logger.log('#space image from Sergey Volkov retweeted 🤓')
-            return True
-        else:
-            return False
-
-
 
     def giphy_tweet(self):
         '''Tweet a random giphy #space gif'''
@@ -143,7 +117,8 @@ class TwitterAPI:
             timeline = filter(lambda status: any(
                 word in status.text.split() for word in word_whitelist), timeline)
         #timeline = filter(lambda status: status.text[0] != "@", timeline)
-        timeline = filter(lambda status: status.entities.get("media") is not None, timeline)
+        timeline = filter(
+            lambda status: status.entities.get("media") is not None, timeline)
         timeline = filter(lambda status: not any(
             word in status.text.split() for word in _word_blacklist), timeline)
         timeline = filter(
