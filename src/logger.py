@@ -51,5 +51,5 @@ class Logger:
 
     def log(self, message, error=False):
         with open(FileNames.log_file, 'a+') as outfile:
-            outfile.write(('ERROR 😡' if error else '') + message + ' ' + str(datetime.now()) + '\n')
+            outfile.write(('😡 ERROR' if error else '') + message + ' ' + str(datetime.now()) + '\n')
         self.saver.sync()

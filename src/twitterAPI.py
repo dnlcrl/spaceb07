@@ -21,7 +21,7 @@ class TwitterAPI:
     with init.sh included with the heroku-twitterbot-starter
     '''
 
-    def __init__(self):
+    def __init__(self, logger:
         consumer_key = os.environ.get('TWITTER_CONSUMER_KEY')
         consumer_secret = os.environ.get('TWITTER_CONSUMER_SECRET')
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -29,7 +29,7 @@ class TwitterAPI:
         access_token_secret = os.environ.get('TWITTER_ACCESS_TOKEN_SECRET')
         auth.set_access_token(access_token, access_token_secret)
         self.api = tweepy.API(auth)
-        self.logger = Logger()
+        self.logger = logger
         self.logger.log('starting TwitterAPI')
         self.tries = 0
         self.max_tries = 3
@@ -51,7 +51,7 @@ class TwitterAPI:
                 self.api.retweet(timeline[0].id)
                 self.logger.update_last_tweet(action, timeline[0])
                 self.logger.log(
-                    '#space image from @' + TWITTER_USERS[action] + ' retweeted 🤓')
+                    '🤓 #space image from @' + TWITTER_USERS[action] + ' retweeted')
             except IndexError as err:
                 self.logger.log(
                     'Retweeting @' + TWITTER_USERS[action] + ': ' + 'NO NEW TWEETS!', error=True)
@@ -70,6 +70,7 @@ class TwitterAPI:
             return True
             # break
         else:
+            self.logger.log('Skipping action as not enough time has passed')
             return False
 
     def giphy_tweet(self):
@@ -89,7 +90,7 @@ class TwitterAPI:
 
                 self.logger.update_last_tweet(
                     Actions.TweetActions.space_gif, status)
-                self.logger.log('#space GIF tweeted 🤓')
+                self.logger.log('🤓 #space GIF tweeted')
                 self.tries = 0
             except Exception, e:
                 self.logger.log(str(e), error=True)
@@ -97,6 +98,7 @@ class TwitterAPI:
                     self.giphy_tweet()
 
         else:
+            self.logger.log('Skipping action as not enough time has passed')
             return False
 
     def prapare_timeline(self, timeline, user_blacklist=None, word_blacklist=None, word_whitelist=None, tweet_id=None):

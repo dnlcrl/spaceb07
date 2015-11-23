@@ -6,7 +6,8 @@ from constants import Actions
 
 
 def main():
-    twitter = TwitterAPI()
+    logger = Logger()
+    twitter = TwitterAPI(logger)
     actions = [Actions.TweetActions.space_gif,
                Actions.TweetActions.retweet_scott_kelly,
                Actions.TweetActions.retweet_astro_kjell,
@@ -27,7 +28,8 @@ def main():
                 if twitter.retweet_astronaut(action, word_blacklist, word_whitelist):
                     break
 
-        print 'sleeping for 30 mins'
+
+        logger.log('Going to sleep for 30mins')
         time.sleep(1800)  # repeat every 30 mins
 
 
