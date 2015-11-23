@@ -49,7 +49,9 @@ class Logger:
             self.log('Reading self.last_tweets[action]["datetime"]' + str(e), error=True)
         return (datetime.now() - t).total_seconds()
 
-    def log(self, message, error=False):
+    def log(self, message, error=False, emoji=None):
+        if emoji is None:
+            emoji = ('😡' if error else 'ℹ️')
         with open(FileNames.log_file, 'a+') as outfile:
-            outfile.write(('😡 ERROR ' if error else 'ℹ️ ') + message + ' ' + str(datetime.now()) + '\n')
+            outfile.write(emoji + (' ERROR ' if error else '️ ') + message + ' ' + str(datetime.now()) + '\n')
         self.saver.sync()
