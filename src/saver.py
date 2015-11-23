@@ -76,7 +76,7 @@ class Saver:
                         pass
                         # print(name, 'is already synced [stats match]')
                     else:
-                        print(name, 'exists with different stats, downloading')
+                        # print(name, 'exists with different stats, downloading')
                         res = self.download(self.folder, subfolder, name)
                         with open(fullname) as f:
                             data = f.read()

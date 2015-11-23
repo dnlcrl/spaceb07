@@ -41,8 +41,8 @@ class TwitterAPI:
         '''Retweet @Astronaut image
         TODO: Refactor to make a single exception log string'''
 
+        self.logger.log('trying to retweet @' + TWITTER_USERS[action])
         if self.logger.last_action_past_seconds(action) > 2*60*60:
-            self.logger.log('trying to retweet @' + TWITTER_USERS[action])
             try:
                 timeline = self.prapare_timeline(self.api.user_timeline(TWITTER_USERS[
                                                  action]), word_whitelist=word_whitelist, word_blacklist=word_blacklist, tweet_id=self.logger.last_action_id(action))
@@ -75,8 +75,8 @@ class TwitterAPI:
     def giphy_tweet(self):
         '''Tweet a random giphy #space gif'''
         self.tries += 1
+        self.logger.log('trying to tweet a #space GIF')
         if self.logger.last_action_past_seconds(Actions.TweetActions.space_gif) > 24*60*60:
-            self.logger.log('trying to tweet a #space GIF')
             try:
                 c = giphy.Giphy()
                 result = c.random(tag="space")
@@ -95,6 +95,8 @@ class TwitterAPI:
                 self.logger.log(str(e), error=True)
                 if self.tries < self.max_tries:
                     self.giphy_tweet()
+                else:
+                    self.logger.log('Skipping because of too much tries', error=True)
 
         else:
             self.logger.log('Skipping action as not enough time has passed')
