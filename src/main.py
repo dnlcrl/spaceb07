@@ -29,7 +29,7 @@ def main():
                 if twitter.retweet_astronaut(action, word_blacklist, word_whitelist):
                     break
 
-        logger.log('😴 Going to sleep for 30mins')
+        logger.log('Going to sleep for 30mins', emoji='😴')
         time.sleep(1800)  # repeat every 30 mins
 
 
