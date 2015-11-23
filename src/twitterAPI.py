@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# from __future__ import unicode_literals
 
 import os
 import tweepy
@@ -69,7 +68,7 @@ class TwitterAPI:
             return True
             # break
         else:
-            self.logger.log('Skipping action as not enough time has passed')
+            self.logger.log('Skipping action as not enough time has passed', emoji='⏲')
             return False
 
     def giphy_tweet(self):
@@ -99,7 +98,7 @@ class TwitterAPI:
                     self.logger.log('Skipping because of too much tries', error=True)
 
         else:
-            self.logger.log('Skipping action as not enough time has passed')
+            self.logger.log('Skipping action as not enough time has passed', emoji='⏲')
             return False
 
     def prapare_timeline(self, timeline, user_blacklist=None, word_blacklist=None, word_whitelist=None, tweet_id=None):
