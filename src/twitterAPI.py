@@ -50,7 +50,7 @@ class TwitterAPI:
                 self.api.retweet(timeline[0].id)
                 self.logger.update_last_tweet(action, timeline[0])
                 self.logger.log(
-                    '🤓 #space image from @' + TWITTER_USERS[action] + ' retweeted')
+                    '#space image from @' + TWITTER_USERS[action] + ' retweeted', emoji='🤓')
             except IndexError as err:
                 self.logger.log(
                     'Retweeting @' + TWITTER_USERS[action] + ': ' + 'NO NEW TWEETS!', error=True)
@@ -89,7 +89,7 @@ class TwitterAPI:
 
                 self.logger.update_last_tweet(
                     Actions.TweetActions.space_gif, status)
-                self.logger.log('🤓 #space GIF tweeted')
+                self.logger.log('#space GIF tweeted', emoji='🤓')
                 self.tries = 0
             except Exception, e:
                 self.logger.log(str(e), error=True)
