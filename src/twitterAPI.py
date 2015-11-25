@@ -89,7 +89,7 @@ class TwitterAPI:
                 tags_str = ''.join(['#' + x.title() + ' ' for x in urllib2.urlopen(
                     url).geturl().split('/')[-1].split('-')[:-1] if x != 'space'])[:-1]
 
-                status = ('🚀 New #Space #GIF from @Giphy!\n'
+                status = ('🚀 New #Space #GIF via @Giphy!\n'
                           '' + tags_str + '\n'
                           '🔗 {}'.format(url))
                 status = self.api.update_with_media('gif.GIF', status)
