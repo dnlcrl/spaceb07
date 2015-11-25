@@ -43,11 +43,12 @@ class TwitterAPI:
 
         self.logger.log('trying to retweet @' + TWITTER_USERS[action])
         if self.logger.last_action_past_seconds(action) > 2*60*60:
+            twid = ''
             try:
                 timeline = self.prapare_timeline(self.api.user_timeline(TWITTER_USERS[
                                                  action]), word_whitelist=word_whitelist, word_blacklist=word_blacklist, tweet_id=self.logger.last_action_id(action))
-
-                self.api.retweet(timeline[0].id)
+                twid = twid
+                self.api.retweet(twid)
                 self.logger.update_last_tweet(action, timeline[0])
                 self.logger.log(
                     '#space image from @' + TWITTER_USERS[action] + ' retweeted', emoji='🤓')
