@@ -14,7 +14,7 @@ class Logger:
     TODO: fix logs timestamp as int not str
 
     '''
-    def __init__(self, debug=False):
+    def __init__(self, debug=True):
         self.debug = debug
         self.saver = Saver()
         try:
