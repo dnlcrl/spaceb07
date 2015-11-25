@@ -47,7 +47,7 @@ class TwitterAPI:
             try:
                 timeline = self.prapare_timeline(self.api.user_timeline(TWITTER_USERS[
                                                  action]), word_whitelist=word_whitelist, word_blacklist=word_blacklist, tweet_id=self.logger.last_action_id(action))
-                twid = twid
+                twid = timeline[0].id
                 self.api.retweet(twid)
                 self.logger.update_last_tweet(action, timeline[0])
                 self.logger.log(
@@ -60,7 +60,7 @@ class TwitterAPI:
                 m = 'Retweeting @' + \
                     TWITTER_USERS[action] + ': ' + str(err.message)
                 m = m + 'check: https://twitter.com/statuses/' + \
-                    str(timeline[0].id)
+                    str(twid)
                 self.logger.log(m, error=True)
                 return False
             except Exception, e:
@@ -70,7 +70,8 @@ class TwitterAPI:
             return True
             # break
         else:
-            self.logger.log('Skipping action as not enough time has passed', emoji='⏲')
+            self.logger.log(
+                'Skipping action as not enough time has passed', emoji='⏲')
             return False
 
     def giphy_tweet(self):
@@ -85,7 +86,8 @@ class TwitterAPI:
                 urllib.urlretrieve(URL, 'gif.GIF')
                 # time_str = str(datetime.now()).split('.')[0]
                 url = result['data']['url']
-                tags_str = ''.join(['#' + x.title() + ' ' for x in urllib2.urlopen(url).geturl().split('/')[-1].split('-')[:-1] if x != 'space'])[:-1]
+                tags_str = ''.join(['#' + x.title() + ' ' for x in urllib2.urlopen(
+                    url).geturl().split('/')[-1].split('-')[:-1] if x != 'space'])[:-1]
 
                 status = ('🚀 New #Space #GIF from @Giphy!\n'
                           '🏷 ' + tags_str + '\n'
@@ -101,10 +103,12 @@ class TwitterAPI:
                 if self.tries < self.max_tries:
                     self.giphy_tweet()
                 else:
-                    self.logger.log('Skipping because of too much tries', error=True)
+                    self.logger.log(
+                        'Skipping because of too much tries', error=True)
 
         else:
-            self.logger.log('Skipping action as not enough time has passed', emoji='⏲')
+            self.logger.log(
+                'Skipping action as not enough time has passed', emoji='⏲')
             return False
 
     def prapare_timeline(self, timeline, user_blacklist=None, word_blacklist=None, word_whitelist=None, tweet_id=None):
