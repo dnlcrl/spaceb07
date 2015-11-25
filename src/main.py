@@ -9,11 +9,11 @@ from logger import Logger
 def main():
     logger = Logger()
     twitter = TwitterAPI(logger)
-    actions = [Actions.TweetActions.space_gif,
-               Actions.TweetActions.retweet_scott_kelly,
-               Actions.TweetActions.retweet_astro_kjell,
-               Actions.TweetActions.retweet_astro_kimiya,
-               Actions.TweetActions.retweet_volkov_iss]
+    actions = [Actions.TweetActions.space_gif]#,
+               # Actions.TweetActions.retweet_scott_kelly,
+               # Actions.TweetActions.retweet_astro_kjell,
+               # Actions.TweetActions.retweet_astro_kimiya,
+               # Actions.TweetActions.retweet_volkov_iss]
 
     while True:
 

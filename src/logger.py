@@ -14,7 +14,8 @@ class Logger:
     TODO: fix logs timestamp as int not str
 
     '''
-    def __init__(self):
+    def __init__(self, debug=True):
+        self.debug = debug
         self.saver = Saver()
         try:
             self.last_tweets = load_json(FileNames.last_tweets)
@@ -52,6 +53,12 @@ class Logger:
     def log(self, message, error=False, emoji=None):
         if emoji is None:
             emoji = ('😡' if error else 'ℹ️')
+        message = emoji + (' ERROR ' if error else '️ ') + message + ' ' + str(datetime.now()) + '\n'
+
+        if not self.debug:
+            print message
+            return
+
         with open(FileNames.log_file, 'a+') as outfile:
-            outfile.write(emoji + (' ERROR ' if error else '️ ') + message + ' ' + str(datetime.now()) + '\n')
+            outfile.write(message)
         self.saver.sync()

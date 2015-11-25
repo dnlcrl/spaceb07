@@ -5,6 +5,7 @@ import os
 import tweepy
 import giphy
 import urllib
+import urllib2
 from datetime import datetime
 from constants import Actions, TWITTER_USERS
 
@@ -30,7 +31,7 @@ class TwitterAPI:
         self.logger = logger
         self.logger.log('starting TwitterAPI')
         self.tries = 0
-        self.max_tries = 3
+        self.max_tries = 10
 
     def tweet(self, message):
         '''Send a tweet'''
@@ -75,15 +76,19 @@ class TwitterAPI:
         '''Tweet a random giphy #space gif'''
         self.tries += 1
         self.logger.log('trying to tweet a #space GIF')
-        if self.logger.last_action_past_seconds(Actions.TweetActions.space_gif) > 24*60*60:
+        if self.logger.last_action_past_seconds(Actions.TweetActions.space_gif) > 12*60*60:
             try:
                 c = giphy.Giphy()
                 result = c.random(tag="space")
                 URL = result['data']['image_original_url']
                 urllib.urlretrieve(URL, 'gif.GIF')
-                status = ('New #Space #GifOfTheDay!\n'
-                          '⌚ ' + str(datetime.now()) + '\n'
-                          '🔗 {}'.format(result['data']['url']))
+                # time_str = str(datetime.now()).split('.')[0]
+                url = result['data']['url']
+                tags_str = ''.join(['#' + x.title() + ' ' for x in urllib2.urlopen(url).geturl().split('/')[-1].split('-')[:-1] if x != 'space'])[:-1]
+
+                status = ('🚀 New #Space #GIF from @Giphy!\n'
+                          '🏷 ' + tags_str + '\n'
+                          '🔗 {}'.format(url))
                 status = self.api.update_with_media('gif.GIF', status)
 
                 self.logger.update_last_tweet(
