@@ -14,5 +14,5 @@
 2. Run `setup/init.sh` and follow the instructions to create an Heroku app for your bot.
 4. Run `setup/init_dropbox.sh` and follow the instructions to link the Heroku app to your dropbox.
 5. Edit the files to customize your bot to make it awesome.
-6. Push the edits on heroku with `git push heroku master`.
+6. Push edits on heroku with `git push heroku master`.
 7. Enjoy.
