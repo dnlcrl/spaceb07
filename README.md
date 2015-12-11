@@ -2,11 +2,10 @@
 :rocket: Space addicted twitter bot: http://twitter.com/spaceb07, running on Heroku.
 
 - Tweets a random GIF tagged "space" from Giphy.com (one every 24 hours).
-- Retweets image pictures from astronauts curently in space (one every 30 minutes, 2 hours between retweets from the same user. Check http://www.howmanypeopleareinspacerightnow.com/ for a list of curently in space astronauts). Currently retweeting from:
-  - Kjell Lindgren: https://twitter.com/astro_kjell
+- Retweets image pictures from astronauts curently in space (one every 30 minutes, 2 hours between retweets from the same user. Check http://www.howmanypeopleareinspacerightnow.com/ for a list of curently in space astronauts). Currently retweeting:
   - Scott Kelly: https://twitter.com/StationCDRKelly
-  - Kimiya Yui: https://twitter.com/astro_kimiya
   - Sergey Volkov: https://twitter.com/volkov_iss
+
 
 # Create Your Own Twitter Bot:
 
