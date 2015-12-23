@@ -15,7 +15,7 @@ def main():
                Actions.TweetActions.retweet_astro_timpeake,
                Actions.TweetActions.retweet_volkov_iss]
 
-    while True:
+    while False:
 
         for action in actions:
             if action == Actions.TweetActions.space_gif:
