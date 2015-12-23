@@ -35,7 +35,7 @@ class Saver:
         self.sync()
 
     def init_files(self):
-        for filename in [FileNames.log_file, FileNames.last_tweets]:
+        for filename in FileNames.all_names:
             try:
                 _, f = self.dbx.files_download(
                     '/' + filename.split(os.sep)[-1])

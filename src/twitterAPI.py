@@ -83,15 +83,17 @@ class TwitterAPI:
                 c = giphy.Giphy()
                 result = c.random(tag="space")
                 URL = result['data']['image_original_url']
+                if self.logger.tweeted_gif(URL.split('/')[-2]):
+                    raise Exception('alreay tweeted this GIF!')
                 urllib.urlretrieve(URL, 'gif.GIF')
                 # time_str = str(datetime.now()).split('.')[0]
                 url = result['data']['url']
                 tags_str = ''.join(['#' + x.title() + ' ' for x in urllib2.urlopen(
                     url).geturl().split('/')[-1].split('-')[:-1] if x != 'space'])[:-1]
 
-                status = ('🚀 #Space #GIF via @Giphy!\n'
-                          '' + tags_str + '\n'
-                          '🔗 {}'.format(url))
+                status = (u'🚀 #Space #GIF via @Giphy!\n'
+                          u'' + tags_str + u'\n'
+                          u'🔗 {}'.format(url))
                 status = self.api.update_with_media('gif.GIF', status)
 
                 self.logger.update_last_tweet(

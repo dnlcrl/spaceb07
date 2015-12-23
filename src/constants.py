@@ -27,8 +27,13 @@ class FileNames:
     '''
     Filenames constants
     '''
-    last_tweets = 'data/last_tweets.json'
-    log_file = 'data/log.txt'
+    _dir = 'data/'
+
+    last_tweets = _dir + 'last_tweets.json'
+    log_file = _dir + 'log.txt'
+    giphy_keys = _dir + 'giphy_keys.txt'
+
+    all_names = [last_tweets, log_file, giphy_keys]
 
 
 TWITTER_USERS = {
