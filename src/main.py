@@ -7,7 +7,7 @@ from logger import Logger
 
 
 def main():
-    logger = Logger()
+    logger = Logger(debug=True)
     twitter = TwitterAPI(logger)
     actions = [Actions.TweetActions.space_gif,
                Actions.TweetActions.retweet_scott_kelly,
