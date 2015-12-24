@@ -6,7 +6,6 @@ import tweepy
 import giphy
 import urllib
 import urllib2
-from datetime import datetime
 from constants import Actions, TWITTER_USERS
 
 
