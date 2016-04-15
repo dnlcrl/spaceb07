@@ -10,10 +10,10 @@ def main():
     logger = Logger(debug=False)
     twitter = TwitterAPI(logger)
     actions = [Actions.TweetActions.space_gif,
-               Actions.TweetActions.retweet_scott_kelly,
                Actions.TweetActions.retweet_astro_tim,
                Actions.TweetActions.retweet_astro_timpeake,
-               Actions.TweetActions.retweet_volkov_iss]
+               Actions.TweetActions.retweet_astro_jeff,
+               ]
 
     while True:
 
