@@ -3,8 +3,7 @@
 
 - Tweets a random GIF tagged "space" from Giphy.com (one every 24 hours).
 - Retweets image pictures from astronauts curently in space (one every 30 minutes, 2 hours between retweets from the same user. Check http://www.howmanypeopleareinspacerightnow.com/ for a list of curently in space astronauts). Currently retweeting:
-  - Scott Kelly: https://twitter.com/StationCDRKelly
-  - Sergey Volkov: https://twitter.com/volkov_iss
+  - Jeff Williams: https://twitter.com/Astro_Jeff
   - Tim Peake: https://twitter.com/astro_timpeake
   - Colonel Tim Kopra: https://twitter.com/astro_tim
 
