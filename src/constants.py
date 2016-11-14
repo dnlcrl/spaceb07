@@ -23,6 +23,7 @@ class Actions:
         retweet_astro_timpeake = 'retweet_astro_timpeake'
         retweet_thom_astro = 'retweet_thom_astro'
         retweet_astropeggy = 'retweet_astropeggy'
+        retweet_astro_kimbrough = 'retweet_astro_kimbrough'
 
 
 class FileNames:
@@ -49,4 +50,5 @@ TWITTER_USERS = {
     Actions.TweetActions.retweet_astro_timpeake: 'astro_timpeake',
     Actions.TweetActions.retweet_thom_astro: 'Thom_astro',
     Actions.TweetActions.retweet_astropeggy: 'AstroPeggy',
+    Actions.TweetActions.retweet_astro_kimbrough: 'astro_kimbrough'
 }
